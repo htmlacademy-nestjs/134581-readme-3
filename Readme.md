@@ -1,7 +1,7 @@
 # Личный проект «Readme»
 
 * Студент: [Николай Буравский](https://up.htmlacademy.ru/nodejs-2/3/user/134581).
-* Наставник: `Неизвестно`.
+* Наставник: [Глеб Клецков](https://htmlacademy.ru/profile/id1487865).
 
 ---
 
