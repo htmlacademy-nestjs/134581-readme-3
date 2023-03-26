@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import { Injectable } from '@nestjs/common';
 import { CRUDRepository } from '@project/util/util-types';
 import { User } from '@project/shared/shared-types';
