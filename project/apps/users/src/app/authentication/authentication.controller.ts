@@ -6,6 +6,7 @@ import { UserRdo } from './rdo/user.rdo';
 import { LoggedUserRdo } from './rdo/logged-user.rdo';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { UpdatePasswordDto } from './dto/update-password.dto';
 
 @ApiTags('authentication')
 @Controller('auth')
@@ -35,6 +36,22 @@ export class AuthenticationController {
   public async login(@Body() dto: LoginUserDto) {
     const verifiedUser = await this.authService.verifyUser(dto);
     return fillObject(LoggedUserRdo, verifiedUser);
+  }
+
+  @ApiResponse({
+    type: LoggedUserRdo,
+    status: HttpStatus.OK,
+    description: 'Password has been successfully updated.',
+  })
+  @ApiResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: 'Password or Login is wrong.',
+  })
+  @Post('update-password')
+  public async updatePassword(@Body() dto: UpdatePasswordDto) {
+    const user = await this.authService.updatePassword(dto);
+
+    return fillObject(LoggedUserRdo, user);
   }
 
   @ApiResponse({

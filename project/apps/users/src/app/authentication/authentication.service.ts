@@ -14,6 +14,7 @@ import {
   AUTH_USER_PASSWORD_WRONG,
 } from './authentication.constant';
 import { LoginUserDto } from './dto/login-user.dto';
+import { UpdatePasswordDto } from './dto/update-password.dto';
 
 @Injectable()
 export class AuthenticationService {
@@ -54,6 +55,21 @@ export class AuthenticationService {
     if (!(await blogUserEntity.comparePassword(password))) {
       throw new UnauthorizedException(AUTH_USER_PASSWORD_WRONG);
     }
+
+    return blogUserEntity.toObject();
+  }
+
+  public async updatePassword(dto: UpdatePasswordDto) {
+    const { email, password, newPassword } = dto;
+    const existUser = await this.blogUserRepository.findByEmail(email);
+
+    if (!existUser) {
+      throw new NotFoundException(AUTH_USER_NOT_FOUND);
+    }
+
+    const blogUserEntity = new BlogUserEntity(existUser);
+
+    blogUserEntity.setPassword(newPassword);
 
     return blogUserEntity.toObject();
   }
