@@ -4,12 +4,15 @@ import { SALT_ROUNDS } from './blog-user.constant';
 
 export class BlogUserEntity implements User {
   public _id: string;
-  public avatar: string;
-  public dateBirth: Date;
-  public email: string;
   public firstname: string;
   public lastname: string;
+  public email: string;
+  public dateBirth: Date;
+  public avatar: string;
   public passwordHash: string;
+  public numberOfPosts: number;
+  public numberOfSubscribers: number;
+  public creadtedAt: Date;
 
   constructor(blogUser: User) {
     this.fillEntity(blogUser);

@@ -10,6 +10,27 @@ export class UserRdo {
   public id: string;
 
   @ApiProperty({
+    description: 'User first name',
+    example: 'Keks',
+  })
+  @Expose()
+  public firstname: string;
+
+  @ApiProperty({
+    description: 'User last name',
+    example: 'Keks',
+  })
+  @Expose()
+  public lastname: string;
+
+  @ApiProperty({
+    description: 'User email',
+    example: 'user@user.local',
+  })
+  @Expose()
+  public email: string;
+
+  @ApiProperty({
     description: 'User avatar path',
     example: '/images/user.png',
   })
@@ -24,23 +45,16 @@ export class UserRdo {
   public dateBirth: string;
 
   @ApiProperty({
-    description: 'User email',
-    example: 'user@user.local',
+    description: 'Number of posts',
+    example: 0,
   })
   @Expose()
-  public email: string;
+  public numberOfPosts: number;
 
   @ApiProperty({
-    description: 'User first name',
-    example: 'Keks',
+    description: 'Number of subscribers',
+    example: 0,
   })
   @Expose()
-  public firstname: string;
-
-  @ApiProperty({
-    description: 'User last name',
-    example: 'Keks',
-  })
-  @Expose()
-  public lastname: string;
+  public numberOfSubscribers: number;
 }
