@@ -6,12 +6,24 @@ export const enum PostType {
   Link = 'link',
 }
 
-interface BasePost {
+export const enum PostOriginType {
+  Reposted = 'reposted',
+  Created = 'created',
+}
+
+export const enum PostStatusType {
+  Published = 'published',
+  Draft = 'draft',
+}
+
+export interface BasePost {
+  _id: string;
   authorId: number;
-  origin: 'reposted' | 'created';
-  status: 'published' | 'draft';
+  origin: PostOriginType;
+  status: PostStatusType;
   originalAuthorId?: number;
   originalPostId?: number;
+  tags: string[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,7 +32,6 @@ export interface VideoPost extends BasePost {
   postType: PostType.Video;
   title: string;
   videoLink: string;
-  tags: string[];
 }
 
 export interface TextPost extends BasePost {
@@ -28,27 +39,23 @@ export interface TextPost extends BasePost {
   title: string;
   excerpt: string;
   text: string;
-  tags: string[];
 }
 
 export interface QuotePost extends BasePost {
   postType: PostType.Quote;
   text: string;
   author: string;
-  tags: string[];
 }
 
 export interface PhotoPost extends BasePost {
   postType: PostType.Photo;
   photo: string;
-  tags: string[];
 }
 
 export interface LinkPost extends BasePost {
   postType: PostType.Link;
   link: string;
   description: string;
-  tags: string[];
 }
 
 export type Post = VideoPost | TextPost | QuotePost | PhotoPost | LinkPost;

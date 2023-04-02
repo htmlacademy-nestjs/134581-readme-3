@@ -6,6 +6,6 @@ export interface User {
   dateBirth: Date;
   avatar: string;
   passwordHash: string;
-  numberOfPosts: number;
-  numberOfSubscribers: number;
+  numberOfPosts?: number;
+  numberOfSubscribers?: number;
 }

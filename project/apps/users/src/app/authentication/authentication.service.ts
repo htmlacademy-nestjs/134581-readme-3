@@ -15,6 +15,7 @@ import {
 } from './authentication.constant';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
+import { User } from '@project/shared/shared-types';
 
 @Injectable()
 export class AuthenticationService {
