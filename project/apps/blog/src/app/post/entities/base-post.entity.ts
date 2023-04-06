@@ -27,5 +27,9 @@ export abstract class BasePostEntity implements BasePost {
     this.tags = basePost.tags;
   }
 
+  public toObject() {
+    return { ...this };
+  }
+
   abstract copy(newAuthorId: number, newPostId: number): BasePostEntity;
 }
