@@ -2,7 +2,6 @@ import { PostType, QuotePost, VideoPost } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class VideoPostEntity extends BasePostEntity implements VideoPost {
-  public postType: PostType.Video;
   public title: string;
   public videoLink: string;
 

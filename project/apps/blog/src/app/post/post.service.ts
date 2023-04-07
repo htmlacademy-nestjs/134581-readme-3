@@ -1,45 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { PostMemoryRepository } from './post-memory.repository';
-import {
-  BasePost,
-  LinkPost,
-  PhotoPost,
-  Post,
-  PostType,
-  QuotePost,
-  TextPost,
-  VideoPost,
-} from '@project/shared/shared-types';
+import { BasePost, PostType } from '@project/shared/shared-types';
 import { BasePostEntity } from './entities/base-post.entity';
 import { VideoPostEntity } from './entities/video-post.entity';
 import { TextPostEntity } from './entities/text-post.entity';
 import { QuotePostEntity } from './entities/quote-text.entity';
 import { PhotoPostEntity } from './entities/photo-post.entity';
 import { LinkPostEntity } from './entities/link-post.entity';
-import { PostDto } from './dto';
+import { PostDto } from './dto/post';
 
 @Injectable()
 export class PostService {
   constructor(private readonly postRepository: PostMemoryRepository) {}
 
-  async createPost(post: PostDto): Promise<BasePost> {
+  async createPost(postDto: PostDto): Promise<BasePost> {
     let postEntity: BasePostEntity;
+
+    const post = {
+      ...postDto,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
 
     switch (post.postType) {
       case PostType.Video:
-        postEntity = new VideoPostEntity(post as VideoPost);
+        postEntity = new VideoPostEntity(post);
         break;
       case PostType.Text:
-        postEntity = new TextPostEntity(post as TextPost);
+        postEntity = new TextPostEntity(post);
         break;
       case PostType.Quote:
-        postEntity = new QuotePostEntity(post as QuotePost);
+        postEntity = new QuotePostEntity(post);
         break;
       case PostType.Photo:
-        postEntity = new PhotoPostEntity(post as PhotoPost);
+        postEntity = new PhotoPostEntity(post);
         break;
       case PostType.Link:
-        postEntity = new LinkPostEntity(post as LinkPost);
+        postEntity = new LinkPostEntity(post);
         break;
       default:
         throw new Error('Invalid post type');

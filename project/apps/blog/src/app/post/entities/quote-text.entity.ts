@@ -2,7 +2,6 @@ import { BasePostEntity } from './base-post.entity';
 import { PostType, QuotePost } from '@project/shared/shared-types';
 
 export class QuotePostEntity extends BasePostEntity implements QuotePost {
-  public postType: PostType.Quote;
   public author: string;
   public text: string;
   constructor(quotePost: QuotePost) {

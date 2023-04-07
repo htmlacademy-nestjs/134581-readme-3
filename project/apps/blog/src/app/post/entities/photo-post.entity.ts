@@ -2,7 +2,6 @@ import { PhotoPost, PostType } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class PhotoPostEntity extends BasePostEntity implements PhotoPost {
-  public postType: PostType.Photo;
   public photo: string;
   constructor(photoPost: PhotoPost) {
     super(photoPost);

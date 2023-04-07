@@ -2,7 +2,6 @@ import { PostType, QuotePost, TextPost } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class TextPostEntity extends BasePostEntity {
-  public postType: PostType.Text;
   public title: string;
   public excerpt: string;
   public text: string;

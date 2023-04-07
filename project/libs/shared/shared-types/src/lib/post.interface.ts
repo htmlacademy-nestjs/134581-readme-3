@@ -17,7 +17,8 @@ export const enum PostStatusType {
 }
 
 export interface BasePost {
-  _id: string;
+  _id?: string;
+  postType: PostType;
   authorId: number;
   origin: PostOriginType;
   status: PostStatusType;
@@ -29,31 +30,26 @@ export interface BasePost {
 }
 
 export interface VideoPost extends BasePost {
-  postType: PostType.Video;
   title: string;
   videoLink: string;
 }
 
 export interface TextPost extends BasePost {
-  postType: PostType.Text;
   title: string;
   excerpt: string;
   text: string;
 }
 
 export interface QuotePost extends BasePost {
-  postType: PostType.Quote;
   text: string;
   author: string;
 }
 
 export interface PhotoPost extends BasePost {
-  postType: PostType.Photo;
   photo: string;
 }
 
 export interface LinkPost extends BasePost {
-  postType: PostType.Link;
   link: string;
   description: string;
 }

@@ -2,7 +2,6 @@ import { LinkPost, PostType } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class LinkPostEntity extends BasePostEntity implements LinkPost {
-  public postType: PostType.Link;
   public link: string;
   public description: string;
 
