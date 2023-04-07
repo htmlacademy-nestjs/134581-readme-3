@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, Put } from '@nestjs/common';
 import { fillObject } from '@project/util/util-core';
 import { PostService } from './post.service';
 import { PostDto } from './dto/post';
@@ -15,5 +15,15 @@ export class PostController {
     const newPost = await this.postService.createPost(dto);
     const rdoClass = postTypeToRdoClass[newPost.postType];
     return fillObject<BasePostRdo, BasePost>(rdoClass, newPost);
+  }
+
+  @Put('/:id')
+  public async update(
+    @Param('id') id: string,
+    @Body() dto: PostDto
+  ): Promise<BasePostRdo> {
+    const updatedPost = await this.postService.updatePost(id, dto);
+    const rdoClass = postTypeToRdoClass[updatedPost.postType];
+    return fillObject<BasePostRdo, BasePost>(rdoClass, updatedPost);
   }
 }
