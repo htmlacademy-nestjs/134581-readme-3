@@ -1,4 +1,4 @@
-import { PhotoPost, PostType } from '@project/shared/shared-types';
+import { PhotoPost, PostOriginType } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class PhotoPostEntity extends BasePostEntity implements PhotoPost {
@@ -9,12 +9,13 @@ export class PhotoPostEntity extends BasePostEntity implements PhotoPost {
     this.photo = photoPost.photo;
   }
 
-  copy(newAuthorId: number, newPostId: number): PhotoPostEntity {
+  copy(newAuthorId: string): PhotoPostEntity {
     const photoPostCopy: PhotoPost = {
       ...this,
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
-      originalPostId: this.originalPostId || this._id,
+      originalPostId: this._id,
+      origin: PostOriginType.Reposted,
     };
 
     return new PhotoPostEntity(photoPostCopy);

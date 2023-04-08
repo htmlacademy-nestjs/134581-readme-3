@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import {
   BadRequestException,
   Injectable,
@@ -8,7 +9,7 @@ import {
   BasePost,
   LinkPost,
   PhotoPost,
-  Post,
+  PostOriginType,
   PostType,
   QuotePost,
   TextPost,
@@ -21,13 +22,17 @@ import { QuotePostEntity } from './entities/quote-text.entity';
 import { PhotoPostEntity } from './entities/photo-post.entity';
 import { LinkPostEntity } from './entities/link-post.entity';
 import { PostDto } from './dto/post';
-import { INVALID_POST_TYPE, POST_NOT_FOUND } from './post.constant';
+import {
+  INVALID_POST_TYPE,
+  POST_NOT_FOUND,
+  REPOST_FORBIDDEN,
+} from './post.constant';
 
 @Injectable()
 export class PostService {
   constructor(private readonly postRepository: PostMemoryRepository) {}
 
-  private createPostEntity(updatedPost: Post) {
+  private createPostEntity(updatedPost: BasePost) {
     let postEntity: BasePostEntity;
     switch (updatedPost.postType) {
       case PostType.Video:
@@ -96,5 +101,24 @@ export class PostService {
       throw new NotFoundException(POST_NOT_FOUND);
     }
     return post;
+  }
+
+  async repostPost(id: string, newAuthorId: string): Promise<BasePost> {
+    const originalPost = await this.postRepository.findById(id);
+    if (!originalPost) {
+      throw new NotFoundException(POST_NOT_FOUND);
+    }
+
+    if (originalPost.origin !== PostOriginType.Created) {
+      throw new BadRequestException(REPOST_FORBIDDEN);
+    }
+
+    const originalPostEntity = this.createPostEntity(originalPost);
+
+    const newPost = originalPostEntity.copy(newAuthorId);
+    newPost.createdAt = new Date();
+    newPost.updatedAt = new Date();
+
+    return this.postRepository.create(newPost);
   }
 }

@@ -17,6 +17,7 @@ export abstract class BasePostEntity implements BasePost {
   public originalAuthorId?: string;
   public originalPostId?: string;
   constructor(basePost: BasePost) {
+    this._id = basePost._id;
     this.authorId = basePost.authorId;
     this.origin = basePost.origin;
     this.status = basePost.status;
@@ -31,5 +32,5 @@ export abstract class BasePostEntity implements BasePost {
     return { ...this };
   }
 
-  abstract copy(newAuthorId: number, newPostId: number): BasePostEntity;
+  abstract copy(newAuthorId: string): BasePostEntity;
 }

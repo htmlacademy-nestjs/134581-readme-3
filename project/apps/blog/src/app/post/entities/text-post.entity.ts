@@ -1,4 +1,4 @@
-import { PostType, QuotePost, TextPost } from '@project/shared/shared-types';
+import { PostOriginType, TextPost } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class TextPostEntity extends BasePostEntity {
@@ -13,12 +13,13 @@ export class TextPostEntity extends BasePostEntity {
     this.text = textPost.text;
   }
 
-  copy(newAuthorId: number, newPostId: number): TextPostEntity {
+  copy(newAuthorId: string): TextPostEntity {
     const textPostCopy: TextPost = {
       ...this,
-      authorId: newAuthorId,
       originalAuthorId: this.authorId,
-      originalPostId: this.originalPostId || this._id,
+      originalPostId: this._id,
+      authorId: newAuthorId,
+      origin: PostOriginType.Reposted,
     };
 
     return new TextPostEntity(textPostCopy);

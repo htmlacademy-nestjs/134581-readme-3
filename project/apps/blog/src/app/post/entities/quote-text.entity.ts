@@ -1,5 +1,5 @@
 import { BasePostEntity } from './base-post.entity';
-import { PostType, QuotePost } from '@project/shared/shared-types';
+import { PostOriginType, QuotePost } from '@project/shared/shared-types';
 
 export class QuotePostEntity extends BasePostEntity implements QuotePost {
   public author: string;
@@ -11,12 +11,13 @@ export class QuotePostEntity extends BasePostEntity implements QuotePost {
     this.text = quotePost.text;
   }
 
-  copy(newAuthorId: number, newPostId: number): QuotePostEntity {
+  copy(newAuthorId: string): QuotePostEntity {
     const quotePostCopy: QuotePost = {
       ...this,
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
-      originalPostId: this.originalPostId || this._id,
+      originalPostId: this._id,
+      origin: PostOriginType.Reposted,
     };
 
     return new QuotePostEntity(quotePostCopy);

@@ -1,4 +1,4 @@
-import { LinkPost, PostType } from '@project/shared/shared-types';
+import { LinkPost, PostOriginType } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class LinkPostEntity extends BasePostEntity implements LinkPost {
@@ -12,12 +12,13 @@ export class LinkPostEntity extends BasePostEntity implements LinkPost {
     this.description = linkPost.description;
   }
 
-  copy(newAuthorId: number, newPostId: number): LinkPostEntity {
+  copy(newAuthorId: string): LinkPostEntity {
     const linkPostCopy: LinkPost = {
       ...this,
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
-      originalPostId: this.originalPostId || this._id,
+      originalPostId: this._id,
+      origin: PostOriginType.Reposted,
     };
 
     return new LinkPostEntity(linkPostCopy);

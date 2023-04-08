@@ -14,6 +14,15 @@ Content-Type: application/json
 }
 
 ###
+# Repost post
+POST http://localhost:3333/api/posts/repost/241c1498-c1b6-4256-af76-835dfd91c712 HTTP/1.1
+Content-Type: application/json
+
+{
+  "newAuthorId": "new-c2d4-46f5-b274-933644968553"
+}
+
+###
 
 # Update post
 PUT http://localhost:3333/api/posts/29123f98-8f3a-4dc7-9d85-fc8077c00d91 HTTP/1.1
@@ -36,6 +45,6 @@ DELETE http://localhost:3333/api/posts/29123f98-8f3a-4dc7-9d85-fc8077c00d91 HTTP
 
 ###
 # Get post by ID
-GET http://localhost:3333/api/posts/29123f98-8f3a-4dc7-9d85-fc8077c00d91 HTTP/1.1
+GET http://localhost:3333/api/posts/97660e24-351f-46fd-b270-fe41fd61c2f7 HTTP/1.1
 
 ###

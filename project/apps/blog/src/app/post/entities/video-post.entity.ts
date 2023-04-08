@@ -1,4 +1,4 @@
-import { PostType, QuotePost, VideoPost } from '@project/shared/shared-types';
+import { PostOriginType, VideoPost } from '@project/shared/shared-types';
 import { BasePostEntity } from './base-post.entity';
 
 export class VideoPostEntity extends BasePostEntity implements VideoPost {
@@ -12,12 +12,13 @@ export class VideoPostEntity extends BasePostEntity implements VideoPost {
     this.videoLink = videoPost.videoLink;
   }
 
-  copy(newAuthorId: number, newPostId: number): VideoPostEntity {
+  copy(newAuthorId: string): VideoPostEntity {
     const quotePostCopy: VideoPost = {
       ...this,
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
-      originalPostId: this.originalPostId || this._id,
+      originalPostId: this._id,
+      origin: PostOriginType.Reposted,
     };
 
     return new VideoPostEntity(quotePostCopy);

@@ -11,15 +11,15 @@ export abstract class BasePostRdo {
   @Expose()
   postType: PostType;
   @Expose()
-  authorId: number;
+  authorId: string;
   @Expose()
   origin: PostOriginType;
   @Expose()
   status: PostStatusType;
   @Expose()
-  originalAuthorId?: number;
+  originalAuthorId?: string;
   @Expose()
-  originalPostId?: number;
+  originalPostId?: string;
   @Expose()
   tags: string[];
   @Expose()

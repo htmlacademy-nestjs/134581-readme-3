@@ -15,6 +15,7 @@ import { BasePostRdo } from './rdo/post/base-post.rdo';
 import { BasePost } from '@project/shared/shared-types';
 import { DeletePostResponseRdo } from './rdo/delete-post-response.rdo';
 import { POST_DELETE_SUCCESS } from './post.constant';
+import { RepostPostDto } from './dto/repost-post.dto';
 
 @Controller('posts')
 export class PostController {
@@ -52,5 +53,12 @@ export class PostController {
     const post = await this.postService.getPostById(id);
     const rdoClass = postTypeToRdoClass[post.postType];
     return fillObject<BasePostRdo, BasePost>(rdoClass, post);
+  }
+
+  @Post('/repost/:id')
+  public async repost(@Param('id') id: string, @Body() dto: RepostPostDto) {
+    const repostedPost = await this.postService.repostPost(id, dto.newAuthorId);
+    const rdoClass = postTypeToRdoClass[repostedPost.postType];
+    return fillObject<BasePostRdo, BasePost>(rdoClass, repostedPost);
   }
 }
