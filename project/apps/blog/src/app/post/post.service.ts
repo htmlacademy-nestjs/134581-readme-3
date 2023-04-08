@@ -78,4 +78,15 @@ export class PostService {
 
     return this.postRepository.update(id, postEntity);
   }
+
+  async deletePost(id: string): Promise<string> {
+    const existingPost = await this.postRepository.findById(id);
+    if (!existingPost) {
+      throw new NotFoundException(POST_NOT_FOUND);
+    }
+
+    await this.postRepository.destroy(id);
+
+    return id;
+  }
 }
