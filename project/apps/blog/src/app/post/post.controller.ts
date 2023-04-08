@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { fillObject } from '@project/util/util-core';
 import { PostService } from './post.service';
 import { PostDto } from './dto/post';
@@ -37,5 +45,12 @@ export class PostController {
       message: POST_DELETE_SUCCESS,
       id: deletedId,
     });
+  }
+
+  @Get('/:id')
+  public async getById(@Param('id') id: string) {
+    const post = await this.postService.getPostById(id);
+    const rdoClass = postTypeToRdoClass[post.postType];
+    return fillObject<BasePostRdo, BasePost>(rdoClass, post);
   }
 }

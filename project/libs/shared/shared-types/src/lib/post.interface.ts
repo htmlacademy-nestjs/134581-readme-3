@@ -19,11 +19,11 @@ export const enum PostStatusType {
 export interface BasePost {
   _id?: string;
   postType: PostType;
-  authorId: number;
+  authorId: string;
   origin: PostOriginType;
   status: PostStatusType;
-  originalAuthorId?: number;
-  originalPostId?: number;
+  originalAuthorId?: string;
+  originalPostId?: string;
   tags: string[];
   createdAt: Date;
   updatedAt: Date;

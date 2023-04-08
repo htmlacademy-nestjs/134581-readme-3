@@ -8,14 +8,14 @@ import {
 export abstract class BasePostEntity implements BasePost {
   public _id: string;
   public postType: PostType;
-  public authorId: number;
+  public authorId: string;
   public origin: PostOriginType;
   public status: PostStatusType;
   public createdAt: Date;
   public updatedAt: Date;
   public tags: string[];
-  public originalAuthorId?: number;
-  public originalPostId?: number;
+  public originalAuthorId?: string;
+  public originalPostId?: string;
   constructor(basePost: BasePost) {
     this.authorId = basePost.authorId;
     this.origin = basePost.origin;

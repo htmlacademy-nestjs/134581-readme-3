@@ -89,4 +89,12 @@ export class PostService {
 
     return id;
   }
+
+  async getPostById(id: string): Promise<BasePost> {
+    const post = await this.postRepository.findById(id);
+    if (!post) {
+      throw new NotFoundException(POST_NOT_FOUND);
+    }
+    return post;
+  }
 }
