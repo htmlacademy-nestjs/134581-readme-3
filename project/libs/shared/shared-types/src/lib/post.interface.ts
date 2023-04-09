@@ -1,4 +1,4 @@
-export const enum PostType {
+export enum PostType {
   Video = 'video',
   Text = 'text',
   Quote = 'quote',
@@ -6,12 +6,12 @@ export const enum PostType {
   Link = 'link',
 }
 
-export const enum PostOriginType {
+export enum PostOriginType {
   Reposted = 'reposted',
   Created = 'created',
 }
 
-export const enum PostStatusType {
+export enum PostStatusType {
   Published = 'published',
   Draft = 'draft',
 }
