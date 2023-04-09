@@ -1,0 +1,38 @@
+# Create a comment
+POST http://localhost:3333/api/comments HTTP/1.1
+Content-Type: application/json
+
+{
+  "text": "This is a comment",
+  "postId": "4d402196-c2d4-46f5-b274-933644968553",
+  "userId": "5d5a5c35-d767-41f7-91f2-8e8b4f4b4a48"
+}
+
+###
+
+# Update comment
+PUT http://localhost:3333/api/comments/483d33b4-cc2d-42f3-91ec-587b254fb398 HTTP/1.1
+Content-Type: application/json
+
+{
+  "text": "This is an updated comment",
+  "postId": "4d402196-c2d4-46f5-b274-933644968553",
+  "userId": "5d5a5c35-d767-41f7-91f2-8e8b4f4b4a48"
+}
+
+###
+
+# Delete comment by ID
+DELETE http://localhost:3333/api/comments/76861fba-587f-4ada-a988-f57f42d7eadb HTTP/1.1
+
+###
+
+# Get comment by ID
+GET http://localhost:3333/api/comments/6ef25623-10a6-4f20-8e32-519b96383830 HTTP/1.1
+
+###
+
+# Get comments by postId
+GET http://localhost:3333/api/comments/post/4d402196-c2d4-46f5-b274-933644968553 HTTP/1.1
+
+###
