@@ -27,10 +27,14 @@ import {
   POST_NOT_FOUND,
   REPOST_FORBIDDEN,
 } from './post.constant';
+import { CommentService } from '../comment/comment.service';
 
 @Injectable()
 export class PostService {
-  constructor(private readonly postRepository: PostMemoryRepository) {}
+  constructor(
+    private readonly postRepository: PostMemoryRepository,
+    private readonly commentService: CommentService
+  ) {}
 
   private createPostEntity(updatedPost: BasePost) {
     let postEntity: BasePostEntity;
@@ -89,6 +93,8 @@ export class PostService {
     if (!existingPost) {
       throw new NotFoundException(POST_NOT_FOUND);
     }
+
+    await this.commentService.deleteCommentsByPostId(id);
 
     await this.postRepository.destroy(id);
 

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "text": "This is a comment",
-  "postId": "4d402196-c2d4-46f5-b274-933644968553",
+  "postId": "e649ad34-4e69-4689-bd92-d78d75281a00",
   "userId": "5d5a5c35-d767-41f7-91f2-8e8b4f4b4a48"
 }
 
@@ -28,11 +28,11 @@ DELETE http://localhost:3333/api/comments/76861fba-587f-4ada-a988-f57f42d7eadb H
 ###
 
 # Get comment by ID
-GET http://localhost:3333/api/comments/6ef25623-10a6-4f20-8e32-519b96383830 HTTP/1.1
+GET http://localhost:3333/api/comments/10488e4f-ea2d-4374-bd45-bc745985fbc5 HTTP/1.1
 
 ###
 
 # Get comments by postId
-GET http://localhost:3333/api/comments/post/4d402196-c2d4-46f5-b274-933644968553 HTTP/1.1
+GET http://localhost:3333/api/comments/post/e649ad34-4e69-4689-bd92-d78d75281a00 HTTP/1.1
 
 ###

@@ -55,4 +55,12 @@ export class CommentService {
 
     return id;
   }
+
+  async deleteCommentsByPostId(postId: string): Promise<void> {
+    const comments = await this.commentRepository.findByPostId(postId);
+
+    for (const comment of comments) {
+      await this.commentRepository.destroy(comment._id);
+    }
+  }
 }

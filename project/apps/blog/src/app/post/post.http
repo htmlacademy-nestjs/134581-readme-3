@@ -41,7 +41,7 @@ Content-Type: application/json
 
 ###
 # Delete By ID
-DELETE http://localhost:3333/api/posts/29123f98-8f3a-4dc7-9d85-fc8077c00d91 HTTP/1.1
+DELETE http://localhost:3333/api/posts/e649ad34-4e69-4689-bd92-d78d75281a00 HTTP/1.1
 
 ###
 # Get post by ID
