@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class DeletePostResponseRdo {
   @ApiProperty({
-    description: 'The confimration message',
+    description: 'The confirmation message',
     example: 'Deletion was successful',
   })
   @Expose()
