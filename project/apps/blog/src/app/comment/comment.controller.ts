@@ -13,7 +13,7 @@ import { fillObject } from '@project/util/util-core';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { CommentRdo } from './rdo/comment.rdo';
-import { COMMENT_DELETE_SUCCESS } from './comment.constant';
+import { CommentMessage } from './comment.constant';
 import { CommentDeleteRdo } from './rdo/comment-delete.rdo';
 
 @ApiTags('comments')
@@ -68,7 +68,7 @@ export class CommentController {
   public async delete(@Param('id') id: string): Promise<CommentDeleteRdo> {
     const deletedId = await this.commentService.delete(id);
     return fillObject(CommentDeleteRdo, {
-      message: COMMENT_DELETE_SUCCESS,
+      message: CommentMessage.COMMENT_DELETE_SUCCESS,
       id: deletedId,
     });
   }

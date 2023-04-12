@@ -35,12 +35,12 @@ export class CommentRdo {
     example: '2023-04-01T12:30:00.000Z',
   })
   @Expose()
-  createdAt: Date;
+  createdAt: number;
 
   @ApiProperty({
     description: 'Comment update date',
     example: '2023-04-01T12:30:00.000Z',
   })
   @Expose()
-  updatedAt: Date;
+  updatedAt: number;
 }

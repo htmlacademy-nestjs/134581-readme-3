@@ -8,7 +8,7 @@ import { BlogUserEntity } from './blog-user.entity';
 export class BlogUserMemoryRepository
   implements CRUDRepository<BlogUserEntity, string, User>
 {
-  private repository: { [key: string]: User } = {};
+  private repository: Record<string, User> = {};
 
   public async create(item: BlogUserEntity): Promise<User> {
     const entry = { ...item.toObject(), _id: crypto.randomUUID() };

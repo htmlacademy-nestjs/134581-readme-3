@@ -8,7 +8,7 @@ import { CommentEntity } from './comment.entity';
 export class CommentMemoryRepository
   implements CRUDRepository<CommentEntity, string, Comment>
 {
-  private repository: { [key: string]: Comment } = {};
+  private repository: Record<string, Comment> = {};
 
   private save(item: Comment, id?: string): Comment {
     const entry = { ...item, _id: id || crypto.randomUUID() };

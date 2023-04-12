@@ -12,8 +12,8 @@ export class CommentService {
   async createComment(commentDto: CreateCommentDto): Promise<Comment> {
     const commentEntity = new CommentEntity({
       ...commentDto,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
     });
     return this.commentRepository.create(commentEntity);
   }
@@ -40,7 +40,7 @@ export class CommentService {
     const updatedCommentEntity = new CommentEntity({
       ...existingComment,
       ...commentDto,
-      updatedAt: new Date(),
+      updatedAt: Date.now(),
     });
 
     return this.commentRepository.update(id, updatedCommentEntity);

@@ -11,8 +11,8 @@ export abstract class BasePostEntity implements BasePost {
   public authorId: string;
   public origin: PostOriginType;
   public status: PostStatusType;
-  public createdAt: Date;
-  public updatedAt: Date;
+  public createdAt: number;
+  public updatedAt: number;
   public tags: string[];
   public originalAuthorId?: string;
   public originalPostId?: string;

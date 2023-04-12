@@ -23,7 +23,7 @@ import {
 import { BasePostRdo } from './rdo/post/base-post.rdo';
 import { BasePost } from '@project/shared/shared-types';
 import { DeletePostResponseRdo } from './rdo/delete-post-response.rdo';
-import { POST_DELETE_SUCCESS } from './post.constant';
+import { PostMessage } from './post.constant';
 import { RepostPostDto } from './dto/repost-post.dto';
 
 @ApiTags('posts')
@@ -75,7 +75,7 @@ export class PostController {
     const deletedId = await this.postService.deletePost(id);
 
     return fillObject(DeletePostResponseRdo, {
-      message: POST_DELETE_SUCCESS,
+      message: PostMessage.POST_DELETE_SUCCESS,
       id: deletedId,
     });
   }

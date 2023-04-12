@@ -2,7 +2,7 @@ import { Like } from '@project/shared/shared-types';
 import { LikeEntity } from './like.entity';
 
 export class LikeMemoryRepository {
-  private repository: { [key: string]: Like } = {};
+  private repository: Record<string, Like> = {};
 
   public async create(item: LikeEntity): Promise<Like> {
     const id = `${item.userId}-${item.postId}`;

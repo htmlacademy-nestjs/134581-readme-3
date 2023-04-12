@@ -25,8 +25,8 @@ export interface BasePost {
   originalAuthorId?: string;
   originalPostId?: string;
   tags: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface VideoPost extends BasePost {

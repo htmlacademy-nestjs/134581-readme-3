@@ -72,7 +72,7 @@ export abstract class BasePostRdo {
     example: '2023-01-01T00:00:00.000Z',
   })
   @Expose()
-  createdAt: Date;
+  createdAt: number;
 
   @ApiProperty({
     description: 'Date and time when the post was updated',
@@ -80,5 +80,5 @@ export abstract class BasePostRdo {
     example: '2023-01-01T00:00:00.000Z',
   })
   @Expose()
-  updatedAt: Date;
+  updatedAt: number;
 }

@@ -22,11 +22,7 @@ import { QuotePostEntity } from './entities/quote-text.entity';
 import { PhotoPostEntity } from './entities/photo-post.entity';
 import { LinkPostEntity } from './entities/link-post.entity';
 import { PostDto } from './dto/post';
-import {
-  INVALID_POST_TYPE,
-  POST_NOT_FOUND,
-  REPOST_FORBIDDEN,
-} from './post.constant';
+import { PostMessage } from './post.constant';
 import { CommentService } from '../comment/comment.service';
 
 @Injectable()
@@ -55,7 +51,7 @@ export class PostService {
         postEntity = new LinkPostEntity(updatedPost as LinkPost);
         break;
       default:
-        throw new BadRequestException(INVALID_POST_TYPE);
+        throw new BadRequestException(PostMessage.INVALID_POST_TYPE);
     }
     return postEntity;
   }
@@ -63,8 +59,8 @@ export class PostService {
   async createPost(postDto: PostDto): Promise<BasePost> {
     const post = {
       ...postDto,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
     };
 
     const postEntity = this.createPostEntity(post);
@@ -75,13 +71,13 @@ export class PostService {
   async updatePost(id: string, postDto: PostDto): Promise<BasePost> {
     const existingPost = await this.postRepository.findById(id);
     if (!existingPost) {
-      throw new NotFoundException(POST_NOT_FOUND);
+      throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
 
     const updatedPost = {
       ...existingPost,
       ...postDto,
-      updatedAt: new Date(),
+      updatedAt: Date.now(),
     };
     let postEntity = this.createPostEntity(updatedPost);
 
@@ -91,7 +87,7 @@ export class PostService {
   async deletePost(id: string): Promise<string> {
     const existingPost = await this.postRepository.findById(id);
     if (!existingPost) {
-      throw new NotFoundException(POST_NOT_FOUND);
+      throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
 
     await this.commentService.deleteCommentsByPostId(id);
@@ -104,7 +100,7 @@ export class PostService {
   async getPostById(id: string): Promise<BasePost> {
     const post = await this.postRepository.findById(id);
     if (!post) {
-      throw new NotFoundException(POST_NOT_FOUND);
+      throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
     return post;
   }
@@ -112,18 +108,18 @@ export class PostService {
   async repostPost(id: string, newAuthorId: string): Promise<BasePost> {
     const originalPost = await this.postRepository.findById(id);
     if (!originalPost) {
-      throw new NotFoundException(POST_NOT_FOUND);
+      throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
 
     if (originalPost.origin !== PostOriginType.Created) {
-      throw new BadRequestException(REPOST_FORBIDDEN);
+      throw new BadRequestException(PostMessage.REPOST_FORBIDDEN);
     }
 
     const originalPostEntity = this.createPostEntity(originalPost);
 
     const newPost = originalPostEntity.copy(newAuthorId);
-    newPost.createdAt = new Date();
-    newPost.updatedAt = new Date();
+    newPost.createdAt = Date.now();
+    newPost.updatedAt = Date.now();
 
     return this.postRepository.create(newPost);
   }

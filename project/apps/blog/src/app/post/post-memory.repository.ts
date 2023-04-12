@@ -8,7 +8,7 @@ import { BasePostEntity } from './entities/base-post.entity';
 export class PostMemoryRepository
   implements CRUDRepository<BasePostEntity, string, BasePost>
 {
-  private repository: { [key: string]: BasePost } = {};
+  private repository: Record<string, BasePost> = {};
 
   public async create(item: BasePostEntity): Promise<BasePost> {
     const entry = { ...item.toObject(), _id: crypto.randomUUID() };

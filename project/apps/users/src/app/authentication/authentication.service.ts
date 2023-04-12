@@ -8,14 +8,9 @@ import dayjs from 'dayjs';
 import { CreateUserDto } from './dto/create-user.dto';
 import { BlogUserMemoryRepository } from '../blog-user/blog-user-memory.repository';
 import { BlogUserEntity } from '../blog-user/blog-user.entity';
-import {
-  AUTH_USER_EXISTS,
-  AUTH_USER_NOT_FOUND,
-  AUTH_USER_PASSWORD_WRONG,
-} from './authentication.constant';
+import { AuthMessage } from './authentication.constant';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
-import { User } from '@project/shared/shared-types';
 
 @Injectable()
 export class AuthenticationService {
@@ -36,7 +31,7 @@ export class AuthenticationService {
     const existUser = await this.blogUserRepository.findByEmail(email);
 
     if (existUser) {
-      throw new ConflictException(AUTH_USER_EXISTS);
+      throw new ConflictException(AuthMessage.AUTH_USER_EXISTS);
     }
 
     const userEntity = await new BlogUserEntity(blogUser).setPassword(password);
@@ -49,12 +44,12 @@ export class AuthenticationService {
     const existUser = await this.blogUserRepository.findByEmail(email);
 
     if (!existUser) {
-      throw new NotFoundException(AUTH_USER_NOT_FOUND);
+      throw new NotFoundException(AuthMessage.AUTH_USER_NOT_FOUND);
     }
 
     const blogUserEntity = new BlogUserEntity(existUser);
     if (!(await blogUserEntity.comparePassword(password))) {
-      throw new UnauthorizedException(AUTH_USER_PASSWORD_WRONG);
+      throw new UnauthorizedException(AuthMessage.AUTH_USER_PASSWORD_WRONG);
     }
 
     return blogUserEntity.toObject();
@@ -65,7 +60,7 @@ export class AuthenticationService {
     const existUser = await this.blogUserRepository.findByEmail(email);
 
     if (!existUser) {
-      throw new NotFoundException(AUTH_USER_NOT_FOUND);
+      throw new NotFoundException(AuthMessage.AUTH_USER_NOT_FOUND);
     }
 
     const blogUserEntity = new BlogUserEntity(existUser);

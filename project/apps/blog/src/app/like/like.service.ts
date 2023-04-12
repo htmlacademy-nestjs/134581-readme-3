@@ -3,7 +3,7 @@ import { Like } from '@project/shared/shared-types';
 import { LikeMemoryRepository } from './like.memory-repository';
 import { LikeDto } from './dto/like.dto';
 import { LikeEntity } from './like.entity';
-import { USER_HAS_ALREADY_LIKED, USER_HAS_NOT_LIKED } from './like.constant';
+import { LikeMessage } from './like.constant';
 
 @Injectable()
 export class LikeService {
@@ -16,7 +16,7 @@ export class LikeService {
     );
 
     if (existingLike) {
-      throw new BadRequestException(USER_HAS_ALREADY_LIKED);
+      throw new BadRequestException(LikeMessage.USER_HAS_ALREADY_LIKED);
     }
 
     const like = new LikeEntity(dto);
@@ -28,7 +28,7 @@ export class LikeService {
     const like = await this.likeRepository.findByUserAndPost(userId, postId);
 
     if (!like) {
-      throw new BadRequestException(USER_HAS_NOT_LIKED);
+      throw new BadRequestException(LikeMessage.USER_HAS_NOT_LIKED);
     }
     console.log('FOUND LIKE');
 
