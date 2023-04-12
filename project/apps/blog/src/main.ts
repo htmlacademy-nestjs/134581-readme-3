@@ -2,9 +2,10 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
@@ -12,8 +13,8 @@ async function bootstrap() {
   const globalPrefix = 'api';
 
   const config = new DocumentBuilder()
-    .setTitle('The «Users» service')
-    .setDescription('Users service API')
+    .setTitle('The «Blog» service')
+    .setDescription('Blog service API')
     .setVersion('1.0')
     .build();
 
