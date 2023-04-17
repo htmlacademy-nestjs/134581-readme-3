@@ -10,8 +10,8 @@ export class BlogUserEntity implements User {
   public dateBirth: Date;
   public avatar: string;
   public passwordHash: string;
-  public numberOfPosts?: number; // TODO: how to set number of posts?
-  public numberOfSubscribers?: number; // TODO: how to set number of subscribers?
+  public numberOfPosts?: number;
+  public numberOfSubscribers?: number;
   public creadtedAt: Date;
 
   constructor(blogUser: User) {

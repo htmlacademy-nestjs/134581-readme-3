@@ -50,7 +50,6 @@ export class AuthenticationController {
   @Post('update-password')
   public async updatePassword(@Body() dto: UpdatePasswordDto) {
     const user = await this.authService.updatePassword(dto);
-
     return fillObject(LoggedUserRdo, user);
   }
 
