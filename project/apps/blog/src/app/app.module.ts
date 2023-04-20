@@ -3,9 +3,11 @@ import { Module } from '@nestjs/common';
 import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
 import { LikeModule } from './like/like.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { TagModule } from './tag/tag.module';
 
 @Module({
-  imports: [PostModule, CommentModule, LikeModule],
+  imports: [PostModule, CommentModule, LikeModule, PrismaModule, TagModule],
   controllers: [],
   providers: [],
 })
