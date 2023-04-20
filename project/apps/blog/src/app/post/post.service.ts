@@ -111,7 +111,7 @@ export class PostService {
       throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
 
-    if (originalPost.origin !== PostOriginType.Created) {
+    if (originalPost.origin !== PostOriginType.CREATED) {
       throw new BadRequestException(PostMessage.REPOST_FORBIDDEN);
     }
 

@@ -7,13 +7,13 @@ export enum PostType {
 }
 
 export enum PostOriginType {
-  Reposted = 'reposted',
-  Created = 'created',
+  REPOSTED = 'REPOSTED',
+  CREATED = 'CREATED',
 }
 
 export enum PostStatusType {
-  Published = 'published',
-  Draft = 'draft',
+  PUBLISHED = 'PUBLISHED',
+  DRAFT = 'DRAFT',
 }
 
 export interface BasePost {

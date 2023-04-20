@@ -17,7 +17,7 @@ export class QuotePostEntity extends BasePostEntity implements QuotePost {
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
       originalPostId: this._id,
-      origin: PostOriginType.Reposted,
+      origin: PostOriginType.REPOSTED,
     };
 
     return new QuotePostEntity(quotePostCopy);

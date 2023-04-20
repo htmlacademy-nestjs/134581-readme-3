@@ -18,7 +18,7 @@ export class LinkPostEntity extends BasePostEntity implements LinkPost {
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
       originalPostId: this._id,
-      origin: PostOriginType.Reposted,
+      origin: PostOriginType.REPOSTED,
     };
 
     return new LinkPostEntity(linkPostCopy);

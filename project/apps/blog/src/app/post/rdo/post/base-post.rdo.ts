@@ -31,7 +31,7 @@ export abstract class BasePostRdo {
 
   @ApiProperty({
     description: 'The post origin type',
-    example: PostOriginType.Created,
+    example: PostOriginType.CREATED,
     enum: PostOriginType,
   })
   @Expose()
@@ -39,7 +39,7 @@ export abstract class BasePostRdo {
 
   @ApiProperty({
     description: 'The post status',
-    example: PostStatusType.Published,
+    example: PostStatusType.PUBLISHED,
     enum: PostStatusType,
   })
   @Expose()
