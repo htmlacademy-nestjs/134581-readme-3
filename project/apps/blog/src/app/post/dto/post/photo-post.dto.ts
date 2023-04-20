@@ -5,10 +5,10 @@ import { ApiProperty } from '@nestjs/swagger';
 export class PhotoPostDto extends BasePostDto {
   @ApiProperty({
     description: 'Post type',
-    example: PostType.Photo,
+    example: PostType.PHOTO,
     enum: PostType,
   })
-  postType: PostType.Photo;
+  postType: PostType.PHOTO;
 
   @ApiProperty({
     description: 'The photo URL',

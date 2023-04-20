@@ -5,10 +5,10 @@ import { ApiProperty } from '@nestjs/swagger';
 export class TextPostDto extends BasePostDto {
   @ApiProperty({
     description: 'Post type',
-    example: PostType.Text,
+    example: PostType.TEXT,
     enum: PostType,
   })
-  postType: PostType.Text;
+  postType: PostType.TEXT;
 
   @ApiProperty({
     description: 'The post title',

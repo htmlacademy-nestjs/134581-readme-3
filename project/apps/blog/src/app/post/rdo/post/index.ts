@@ -15,9 +15,9 @@ export type PostRdo =
   | LinkPostRdo;
 
 export const postTypeToRdoClass = {
-  [PostType.Video]: VideoPostRdo,
-  [PostType.Text]: TextPostRdo,
-  [PostType.Quote]: QuotePostRdo,
-  [PostType.Photo]: PhotoPostRdo,
-  [PostType.Link]: LinkPostRdo,
+  [PostType.VIDEO]: VideoPostRdo,
+  [PostType.TEXT]: TextPostRdo,
+  [PostType.QUOTE]: QuotePostRdo,
+  [PostType.PHOTO]: PhotoPostRdo,
+  [PostType.LINK]: LinkPostRdo,
 };

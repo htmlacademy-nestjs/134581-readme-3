@@ -35,19 +35,19 @@ export class PostService {
   private createPostEntity(updatedPost: BasePost) {
     let postEntity: BasePostEntity;
     switch (updatedPost.postType) {
-      case PostType.Video:
+      case PostType.VIDEO:
         postEntity = new VideoPostEntity(updatedPost as VideoPost);
         break;
-      case PostType.Text:
+      case PostType.TEXT:
         postEntity = new TextPostEntity(updatedPost as TextPost);
         break;
-      case PostType.Quote:
+      case PostType.QUOTE:
         postEntity = new QuotePostEntity(updatedPost as QuotePost);
         break;
-      case PostType.Photo:
+      case PostType.PHOTO:
         postEntity = new PhotoPostEntity(updatedPost as PhotoPost);
         break;
-      case PostType.Link:
+      case PostType.LINK:
         postEntity = new LinkPostEntity(updatedPost as LinkPost);
         break;
       default:

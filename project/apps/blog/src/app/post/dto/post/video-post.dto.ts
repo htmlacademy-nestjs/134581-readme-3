@@ -5,10 +5,10 @@ import { ApiProperty } from '@nestjs/swagger';
 export class VideoPostDto extends BasePostDto {
   @ApiProperty({
     description: 'Post type',
-    example: PostType.Video,
+    example: PostType.VIDEO,
     enum: PostType,
   })
-  postType: PostType.Video;
+  postType: PostType.VIDEO;
 
   @ApiProperty({
     description: 'The post title',

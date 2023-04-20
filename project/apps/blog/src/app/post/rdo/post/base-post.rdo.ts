@@ -16,7 +16,7 @@ export abstract class BasePostRdo {
 
   @ApiProperty({
     description: 'The type of the post',
-    example: PostType.Text,
+    example: PostType.TEXT,
     enum: PostType,
   })
   @Expose()
