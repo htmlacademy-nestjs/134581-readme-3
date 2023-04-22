@@ -4,8 +4,8 @@ export class CommentEntity {
   public text: string;
   public postId: string;
   public userId: string;
-  public createdAt: number;
-  public updatedAt: number;
+  public createdAt: Date;
+  public updatedAt: Date;
 
   constructor(data: Comment) {
     this._id = data._id;

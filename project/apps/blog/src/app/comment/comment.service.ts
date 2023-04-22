@@ -1,19 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Comment } from '@project/shared/shared-types';
 import { CommentEntity } from './comment.entity';
-import { CommentMemoryRepository } from './comment-memory.repository';
+import { CommentRepository } from './comment.repository';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { COMMENT_NOT_FOUND_ERROR } from './comment.constant';
 
 @Injectable()
 export class CommentService {
-  constructor(private readonly commentRepository: CommentMemoryRepository) {}
+  constructor(private readonly commentRepository: CommentRepository) {}
 
   async createComment(commentDto: CreateCommentDto): Promise<Comment> {
     const commentEntity = new CommentEntity({
       ...commentDto,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     return this.commentRepository.create(commentEntity);
   }
@@ -40,7 +40,7 @@ export class CommentService {
     const updatedCommentEntity = new CommentEntity({
       ...existingComment,
       ...commentDto,
-      updatedAt: Date.now(),
+      updatedAt: new Date(),
     });
 
     return this.commentRepository.update(id, updatedCommentEntity);

@@ -46,7 +46,6 @@ export class PostRepository
           connect: [],
         },
         tags: {
-          // TODO: tagId is not a valid field for the Tag Type
           connect: entityData.tags.map(({ tagId }) => ({ tagId })),
         },
       },
@@ -114,7 +113,7 @@ export class PostRepository
           connect: [],
         },
         tags: {
-          set: entityData.tags.map(({ _id }) => ({ tagId: _id })),
+          set: entityData.tags.map(({ tagId }) => ({ tagId })),
         },
       },
       include: {
