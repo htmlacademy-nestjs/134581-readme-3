@@ -4,12 +4,12 @@ Content-Type: application/json
 
 {
   "userId": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
-  "postId": "2a3b4c5d-6e7f-8g9h-0i1j-2k3l4m5n6o7p"
+  "postId": "3c04ed34-5903-4dbe-bcd8-72f2332f5fd2"
 }
 
 ###
 
 # Unlike a post
-DELETE http://localhost:3333/api/likes/2a3b4c5d-6e7f-8g9h-0i1j-2k3l4m5n6o7p/user/1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p HTTP/1.1
+DELETE http://localhost:3333/api/likes/3c04ed34-5903-4dbe-bcd8-72f2332f5fd2/user/1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p HTTP/1.1
 
 ###
