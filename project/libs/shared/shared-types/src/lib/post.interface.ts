@@ -1,3 +1,7 @@
+import { Tag } from './tag.interface';
+import { Like } from './like.interface';
+import { Comment } from './comment.interface';
+
 export enum PostType {
   VIDEO = 'VIDEO',
   TEXT = 'TEXT',
@@ -24,9 +28,11 @@ export interface BasePost {
   status: PostStatusType;
   originalAuthorId?: string;
   originalPostId?: string;
-  tags: string[];
-  createdAt: number;
-  updatedAt: number;
+  tags: Tag[];
+  comments: Comment[];
+  likes: Like[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface VideoPost extends BasePost {

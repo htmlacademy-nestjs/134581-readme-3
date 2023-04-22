@@ -4,11 +4,11 @@ Content-Type: application/json
 
 {
   "authorId": "4d402196-c2d4-46f5-b274-933644968553",
-  "origin": "created",
-  "status": "draft",
-  "tags": [],
-  "postType": "text",
-  "title": "Post title",
+  "origin": "CREATED",
+  "status": "DRAFT",
+  "tags": ["f28f0584-41ff-49ca-92a8-e88c101b81bc", "e492f3ec-a52e-45b6-9523-ea8685814714"],
+  "postType": "TEXT",
+  "title": "Sport Post title",
   "excerpt": "Short description text",
   "text": "Contents of the post"
 }
@@ -30,10 +30,10 @@ Content-Type: application/json
 
 {
   "authorId": "4d402196-c2d4-46f5-b274-933644968553",
-  "origin": "created",
-  "status": "draft",
-  "tags": ["some tag"],
-  "postType": "text",
+  "origin": "CREATED",
+  "status": "DRAFT",
+  "tags": ["id1"],
+  "postType": "TEXT",
   "title": "Post title",
   "excerpt": "Short description text updated",
   "text": "Contents of the post updated"

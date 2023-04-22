@@ -1,10 +1,9 @@
-import crypto from 'node:crypto';
 import {
   BadRequestException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { PostMemoryRepository } from './post-memory.repository';
+import { PostRepository } from './post.repository';
 import {
   BasePost,
   LinkPost,
@@ -23,13 +22,13 @@ import { PhotoPostEntity } from './entities/photo-post.entity';
 import { LinkPostEntity } from './entities/link-post.entity';
 import { PostDto } from './dto/post';
 import { PostMessage } from './post.constant';
-import { CommentService } from '../comment/comment.service';
+import { TagService } from '../tag/tag.service';
 
 @Injectable()
 export class PostService {
   constructor(
-    private readonly postRepository: PostMemoryRepository,
-    private readonly commentService: CommentService
+    private readonly postRepository: PostRepository,
+    private readonly tagService: TagService
   ) {}
 
   private createPostEntity(updatedPost: BasePost) {
@@ -57,13 +56,19 @@ export class PostService {
   }
 
   async createPost(postDto: PostDto): Promise<BasePost> {
+    const tags = await this.tagService.getTagsByIds(postDto.tags);
     const post = {
       ...postDto,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
+      tags,
+      comments: [],
+      likes: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     const postEntity = this.createPostEntity(post);
+
+    console.log(postEntity);
 
     return this.postRepository.create(postEntity);
   }
@@ -74,10 +79,13 @@ export class PostService {
       throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
 
+    const tags = await this.tagService.getTagsByIds(postDto.tags);
+
     const updatedPost = {
       ...existingPost,
       ...postDto,
-      updatedAt: Date.now(),
+      tags,
+      updatedAt: new Date(),
     };
     let postEntity = this.createPostEntity(updatedPost);
 
@@ -89,8 +97,6 @@ export class PostService {
     if (!existingPost) {
       throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
-
-    await this.commentService.deleteCommentsByPostId(id);
 
     await this.postRepository.destroy(id);
 
@@ -118,8 +124,8 @@ export class PostService {
     const originalPostEntity = this.createPostEntity(originalPost);
 
     const newPost = originalPostEntity.copy(newAuthorId);
-    newPost.createdAt = Date.now();
-    newPost.updatedAt = Date.now();
+    newPost.createdAt = new Date();
+    newPost.updatedAt = new Date();
 
     return this.postRepository.create(newPost);
   }

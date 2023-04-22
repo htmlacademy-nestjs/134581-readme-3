@@ -11,7 +11,7 @@ export abstract class BasePostRdo {
     description: 'The unique post ID',
     example: 'a1b2c3d4',
   })
-  @Expose({ name: '_id' })
+  @Expose({ name: 'postId' })
   id: string;
 
   @ApiProperty({

@@ -2,7 +2,7 @@ import { Entity } from '@project/util/util-types';
 import { Tag } from '@project/shared/shared-types';
 
 export class TagEntity implements Entity<TagEntity>, Tag {
-  public _id: number;
+  public _id: string;
   public name: string;
 
   constructor(category: Tag) {

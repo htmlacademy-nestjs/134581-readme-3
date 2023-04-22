@@ -13,7 +13,7 @@ datasource db {
 
 enum PostType {
   TEXT
-  IMAGE
+  PHOTO
   VIDEO
   QUOTE
   LINK
@@ -48,8 +48,8 @@ model Post {
   linkUrl      String?    @map("link_url")
   linkTitle    String?    @map("link_title")
   tagTagId     String?
-  Comment      Comment[]
-  Like         Like[]
+  comments     Comment[]
+  likes        Like[]
 
   @@map("posts")
 }
