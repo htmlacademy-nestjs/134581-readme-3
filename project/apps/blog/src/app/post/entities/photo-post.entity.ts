@@ -15,7 +15,7 @@ export class PhotoPostEntity extends BasePostEntity implements PhotoPost {
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
       originalPostId: this._id,
-      origin: PostOriginType.Reposted,
+      origin: PostOriginType.REPOSTED,
     };
 
     return new PhotoPostEntity(photoPostCopy);

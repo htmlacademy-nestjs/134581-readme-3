@@ -25,7 +25,7 @@ export abstract class BasePostDto {
   @ApiProperty({
     description: 'Post tags',
     type: [String],
-    example: ['tag1', 'tag2'],
+    example: ['tagId1', 'tagId2'],
   })
   tags: string[];
 }

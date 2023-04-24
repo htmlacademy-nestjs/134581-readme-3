@@ -5,10 +5,10 @@ import { ApiProperty } from '@nestjs/swagger';
 export class QuotePostDto extends BasePostDto {
   @ApiProperty({
     description: 'Post type',
-    example: PostType.Quote,
+    example: PostType.QUOTE,
     enum: PostType,
   })
-  postType: PostType.Quote;
+  postType: PostType.QUOTE;
 
   @ApiProperty({
     description: 'The quote content',

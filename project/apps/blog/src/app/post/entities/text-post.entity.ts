@@ -19,7 +19,7 @@ export class TextPostEntity extends BasePostEntity {
       originalAuthorId: this.authorId,
       originalPostId: this._id,
       authorId: newAuthorId,
-      origin: PostOriginType.Reposted,
+      origin: PostOriginType.REPOSTED,
     };
 
     return new TextPostEntity(textPostCopy);

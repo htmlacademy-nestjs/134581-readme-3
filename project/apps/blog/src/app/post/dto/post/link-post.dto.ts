@@ -5,10 +5,10 @@ import { ApiProperty } from '@nestjs/swagger';
 export class LinkPostDto extends BasePostDto {
   @ApiProperty({
     description: 'Post type',
-    example: PostType.Link,
+    example: PostType.LINK,
     enum: PostType,
   })
-  postType: PostType.Link;
+  postType: PostType.LINK;
 
   @ApiProperty({
     description: 'The link URL',

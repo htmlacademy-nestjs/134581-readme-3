@@ -18,7 +18,7 @@ export class VideoPostEntity extends BasePostEntity implements VideoPost {
       authorId: newAuthorId,
       originalAuthorId: this.authorId,
       originalPostId: this._id,
-      origin: PostOriginType.Reposted,
+      origin: PostOriginType.REPOSTED,
     };
 
     return new VideoPostEntity(quotePostCopy);

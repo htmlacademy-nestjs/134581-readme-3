@@ -1,19 +1,23 @@
+import { Tag } from './tag.interface';
+import { Like } from './like.interface';
+import { Comment } from './comment.interface';
+
 export enum PostType {
-  Video = 'video',
-  Text = 'text',
-  Quote = 'quote',
-  Photo = 'photo',
-  Link = 'link',
+  VIDEO = 'VIDEO',
+  TEXT = 'TEXT',
+  QUOTE = 'QUOTE',
+  PHOTO = 'PHOTO',
+  LINK = 'LINK',
 }
 
 export enum PostOriginType {
-  Reposted = 'reposted',
-  Created = 'created',
+  REPOSTED = 'REPOSTED',
+  CREATED = 'CREATED',
 }
 
 export enum PostStatusType {
-  Published = 'published',
-  Draft = 'draft',
+  PUBLISHED = 'PUBLISHED',
+  DRAFT = 'DRAFT',
 }
 
 export interface BasePost {
@@ -24,9 +28,11 @@ export interface BasePost {
   status: PostStatusType;
   originalAuthorId?: string;
   originalPostId?: string;
-  tags: string[];
-  createdAt: number;
-  updatedAt: number;
+  tags: Tag[];
+  comments: Comment[];
+  likes: Like[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface VideoPost extends BasePost {
