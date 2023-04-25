@@ -3,8 +3,9 @@ import { FileService } from './file.service';
 import { FileController } from './file.controller';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ConfigService } from '@nestjs/config';
-
-const SERVE_ROOT = '/static';
+import { FileRepository } from './file.repository';
+import { MongooseModule } from '@nestjs/mongoose';
+import { FileModel, FileSchema } from './file.model';
 
 @Module({
   imports: [
@@ -14,10 +15,11 @@ const SERVE_ROOT = '/static';
         const rootPath = configService.get<string>(
           'application.uploadDirectory'
         );
+        const serveRoot = configService.get<string>('application.serveRoot');
         return [
           {
             rootPath,
-            serveRoot: SERVE_ROOT,
+            serveRoot,
             serveStaticOptions: {
               fallthrough: true,
               etag: true,
@@ -26,8 +28,9 @@ const SERVE_ROOT = '/static';
         ];
       },
     }),
+    MongooseModule.forFeature([{ name: FileModel.name, schema: FileSchema }]),
   ],
-  providers: [FileService],
+  providers: [FileService, FileRepository],
   controllers: [FileController],
 })
 export class FileModule {}
