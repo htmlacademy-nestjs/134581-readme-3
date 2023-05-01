@@ -4,3 +4,8 @@ export enum PostMessage {
   POST_DELETE_SUCCESS = 'Post deleted successfully',
   REPOST_FORBIDDEN = 'You can only repost original posts',
 }
+
+export enum PostQueryDefault {
+  DEFAULT_POST_COUNT_LIMIT = 10,
+  DEFAULT_SORT_DIRECTION = 'desc',
+}

@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { fillObject } from '@project/util/util-core';
@@ -26,6 +27,7 @@ import { DeletePostResponseRdo } from './rdo/delete-post-response.rdo';
 import { PostMessage } from './post.constant';
 import { RepostPostDto } from './dto/repost-post.dto';
 import { PostValidationPipe } from './post-validation.pipe';
+import { PostQuery } from './query/post.query';
 
 @ApiTags('posts')
 @Controller('posts')
@@ -91,6 +93,15 @@ export class PostController {
     const post = await this.postService.getPostById(id);
     const rdoClass = postTypeToRdoClass[post.postType];
     return fillObject<BasePostRdo, BasePost>(rdoClass, post);
+  }
+
+  @Get('/')
+  async index(@Query() query: PostQuery) {
+    const posts = await this.postService.getPosts(query);
+    return posts.map((post) => {
+      const rdoClass = postTypeToRdoClass[post.postType];
+      return fillObject<BasePostRdo, BasePost>(rdoClass, post);
+    });
   }
 
   @ApiResponse({

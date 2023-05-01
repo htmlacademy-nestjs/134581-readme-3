@@ -23,6 +23,7 @@ import { LinkPostEntity } from './entities/link-post.entity';
 import { PostDto } from './dto/post';
 import { PostMessage } from './post.constant';
 import { TagService } from '../tag/tag.service';
+import { PostQuery } from './query/post.query';
 
 @Injectable()
 export class PostService {
@@ -109,6 +110,10 @@ export class PostService {
       throw new NotFoundException(PostMessage.POST_NOT_FOUND);
     }
     return post;
+  }
+
+  async getPosts(query: PostQuery): Promise<BasePost[]> {
+    return await this.postRepository.find(query);
   }
 
   async repostPost(id: string, newAuthorId: string): Promise<BasePost> {

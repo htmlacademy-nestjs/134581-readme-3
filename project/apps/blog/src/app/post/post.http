@@ -48,3 +48,7 @@ DELETE http://localhost:3333/api/posts/e649ad34-4e69-4689-bd92-d78d75281a00 HTTP
 GET http://localhost:3333/api/posts/97660e24-351f-46fd-b270-fe41fd61c2f7 HTTP/1.1
 
 ###
+# Get all posts and filtres
+GET http://localhost:3333/api/posts?sortDirection=desc&limit=2&page=1&tags=f28f0584-41ff-49ca-92a8-e88c101b81bc, HTTP/1.1
+
+###
