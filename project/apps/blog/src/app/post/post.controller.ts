@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { fillObject } from '@project/util/util-core';
@@ -25,6 +26,8 @@ import { BasePost } from '@project/shared/shared-types';
 import { DeletePostResponseRdo } from './rdo/delete-post-response.rdo';
 import { PostMessage } from './post.constant';
 import { RepostPostDto } from './dto/repost-post.dto';
+import { PostValidationPipe } from './post-validation.pipe';
+import { PostQuery } from './query/post.query';
 
 @ApiTags('posts')
 @Controller('posts')
@@ -44,7 +47,7 @@ export class PostController {
     LinkPostRdo
   )
   @Post('/')
-  public async create(@Body() dto: PostDto) {
+  public async create(@Body(new PostValidationPipe()) dto: PostDto) {
     const newPost = await this.postService.createPost(dto);
     const rdoClass = postTypeToRdoClass[newPost.postType];
     return fillObject<BasePostRdo, BasePost>(rdoClass, newPost);
@@ -58,7 +61,7 @@ export class PostController {
   @Put('/:id')
   public async update(
     @Param('id') id: string,
-    @Body() dto: PostDto
+    @Body(new PostValidationPipe()) dto: PostDto
   ): Promise<BasePostRdo> {
     const updatedPost = await this.postService.updatePost(id, dto);
     const rdoClass = postTypeToRdoClass[updatedPost.postType];
@@ -90,6 +93,15 @@ export class PostController {
     const post = await this.postService.getPostById(id);
     const rdoClass = postTypeToRdoClass[post.postType];
     return fillObject<BasePostRdo, BasePost>(rdoClass, post);
+  }
+
+  @Get('/')
+  async index(@Query() query: PostQuery) {
+    const posts = await this.postService.getPosts(query);
+    return posts.map((post) => {
+      const rdoClass = postTypeToRdoClass[post.postType];
+      return fillObject<BasePostRdo, BasePost>(rdoClass, post);
+    });
   }
 
   @ApiResponse({

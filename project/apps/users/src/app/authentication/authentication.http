@@ -14,6 +14,8 @@ Content-Type: application/json
 
 # Get user by ID
 GET http://localhost:3333/api/auth/643c2147179bc4b081d4a4bf HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDNjMjE0NzE3OWJjNGIwODFkNGE0YmYiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQubG9jYWwiLCJsYXN0bmFtZSI6IlNtaXRoIiwiZmlyc3RuYW1lIjoiSm9obiIsImlhdCI6MTY4Mjk0NTI0NywiZXhwIjoxNjgyOTQ1ODQ3fQ.Zvx7xvAO4VwMwrfEKcmh2lkcAc23fYqcHtMC19MsP54
+
 
 ###
 
@@ -23,7 +25,7 @@ Content-Type: application/json
 
 {
   "email": "user@notfound.local",
-  "password": "123456"
+  "password": "654321"
 }
 
 ###

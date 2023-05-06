@@ -9,6 +9,7 @@ import {
   PostType,
 } from '@project/shared/shared-types';
 import { PrismaService } from '../prisma/prisma.service';
+import { PostQuery } from './query/post.query';
 
 type PrismaPostWithRelations = Prisma.Post & {
   tags: Prisma.Tag[];
@@ -86,13 +87,30 @@ export class PostRepository
     return this.mapPrismaPostToAppPost(prismaPost);
   }
 
-  public async find(): Promise<Post[]> {
+  public async find({
+    limit,
+    tags,
+    sortDirection,
+    page,
+  }: PostQuery): Promise<Post[]> {
     const prismaPosts = await this.prisma.post.findMany({
+      where: {
+        tags: {
+          some: {
+            tagId: {
+              in: tags,
+            },
+          },
+        },
+      },
+      take: limit,
       include: {
         tags: true,
         comments: true,
         likes: true,
       },
+      orderBy: [{ createdAt: sortDirection }],
+      skip: page > 0 ? limit * (page - 1) : undefined,
     });
 
     return prismaPosts.map(this.mapPrismaPostToAppPost);

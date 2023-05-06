@@ -13,3 +13,7 @@ coverage
 
 # Environments
 *.env
+
+
+**/uploads/*
+!.gitkeep
